@@ -124,7 +124,7 @@
                         <version>21.0.0.2</version>
                         <configuration>
                             <buildArgs>
-                                -Dspring.graal.mode=initialization-only -Dspring.graal.verbose=true -Dspring.graal.skip-logback=true
+                                -Dspring.graal.mode=initialization-only -Dspring.graal.verbose=true -Dspring.graal.skip-logback=true --enable-url-protocols=http
                             </buildArgs>
                         </configuration>
                         <executions>
