@@ -1,0 +1,12 @@
+apiVersion: skaffold/v2beta5
+kind: Config
+metadata:
+  name: callme-service
+build:
+  artifacts:
+  - image: piomin/callme-service
+    jib: {}
+deploy:
+  kubectl:
+    manifests:
+      - k8s/ksvc.yaml

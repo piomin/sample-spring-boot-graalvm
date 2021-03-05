@@ -1,0 +1,10 @@
+spring.application.name: caller-service
+
+management:
+  endpoint.health:
+    show-details: always
+    group:
+      readiness:
+        include: db
+    probes:
+      enabled: true
