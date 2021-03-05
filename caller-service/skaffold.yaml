@@ -1,10 +1,10 @@
 apiVersion: skaffold/v2beta5
 kind: Config
 metadata:
-  name: callme-service
+  name: caller-service
 build:
   artifacts:
-  - image: piomin/callme-service
+  - image: piomin/caller-service
     jib: {}
 deploy:
   kubectl:
