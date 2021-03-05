@@ -1,14 +1,14 @@
 package pl.piomin.samples.callme.model;
 
-import lombok.Data;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 @RequiredArgsConstructor
 public class Callme {
 

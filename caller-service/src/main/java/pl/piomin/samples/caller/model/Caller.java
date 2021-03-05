@@ -1,15 +1,15 @@
 package pl.piomin.samples.caller.model;
 
-import lombok.Data;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Data
+@Getter
+@Setter
 @RequiredArgsConstructor
+@NoArgsConstructor
 public class Caller {
 
     @Id
