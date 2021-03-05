@@ -16,7 +16,7 @@
 
     <properties>
         <start-class>
-            pl.piomin.samples.callme.CallerApplication
+            pl.piomin.samples.caller.CallerApplication
         </start-class>
         <java.version>11</java.version>
     </properties>
