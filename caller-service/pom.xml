@@ -82,6 +82,9 @@
                     </dependency>
                 </dependencies>
                 <configuration>
+                    <from>
+                        <image>ubuntu:20.10</image>
+                    </from>
                     <pluginExtensions>
                         <pluginExtension>
                             <implementation>com.google.cloud.tools.jib.maven.extension.nativeimage.JibNativeImageExtension</implementation>
