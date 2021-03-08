@@ -19,6 +19,7 @@
             pl.piomin.samples.callme.CallmeApplication
         </start-class>
         <java.version>11</java.version>
+        <spring.native.version>0.9.0-SNAPSHOT</spring.native.version>
     </properties>
 
     <dependencies>
@@ -40,28 +41,18 @@
             <scope>runtime</scope>
         </dependency>
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context-indexer</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.16</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.experimental</groupId>
-            <artifactId>spring-graalvm-native</artifactId>
-            <version>0.9.0-SNAPSHOT</version>
+            <artifactId>spring-native</artifactId>
+            <version>${spring.native.version}</version>
         </dependency>
     </dependencies>
 
     <repositories>
-        <repository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>https://repo.spring.io/milestone</url>
-        </repository>
         <repository>
             <id>spring-snapshots</id>
             <name>Spring Snapshots</name>
@@ -69,11 +60,6 @@
         </repository>
     </repositories>
     <pluginRepositories>
-        <pluginRepository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>https://repo.spring.io/milestone</url>
-        </pluginRepository>
         <pluginRepository>
             <id>spring-snapshots</id>
             <name>Spring Snapshots</name>
@@ -86,14 +72,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <image>
-                        <builder>paketobuildpacks/builder:tiny</builder>
-                        <env>
-                            <BP_BOOT_NATIVE_IMAGE>true</BP_BOOT_NATIVE_IMAGE>
-                        </env>
-                    </image>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>com.google.cloud.tools</groupId>
@@ -138,7 +116,7 @@
             <plugin>
                 <groupId>org.springframework.experimental</groupId>
                 <artifactId>spring-aot-maven-plugin</artifactId>
-                <version>0.9.0-SNAPSHOT</version>
+                <version>${spring.native.version}</version>
                 <executions>
                     <execution>
                         <id>test-generate</id>
@@ -153,16 +131,13 @@
                         </goals>
                     </execution>
                 </executions>
-                <configuration>
-                    <removeYamlSupport>true</removeYamlSupport>
-                </configuration>
             </plugin>
         </plugins>
     </build>
 
     <profiles>
         <profile>
-            <id>graal</id>
+            <id>native-image</id>
             <build>
                 <plugins>
                     <plugin>
