@@ -1,12 +1,21 @@
-apiVersion: skaffold/v2beta5
+apiVersion: skaffold/v2beta11
 kind: Config
 metadata:
   name: callme-service
 build:
   artifacts:
   - image: piomin/callme-service
-    jib: {}
+    buildpacks:
+      builder: paketobuildpacks/builder:tiny
+      env:
+      - BP_BOOT_NATIVE_IMAGE=true
 deploy:
   kubectl:
     manifests:
       - k8s/ksvc.yaml
+profiles:
+  - name: jib
+    build:
+      artifacts:
+        - image: piomin/callme-service
+          jib: {}
