@@ -4,16 +4,17 @@ metadata:
   name: callme-service
   labels:
     app.openshift.io/runtime: spring-boot
+  annotations:
+    serving.knative.dev/rollout-duration: "300s"
 spec:
   template:
     metadata:
       labels:
         app.openshift.io/runtime: spring-boot
     spec:
-      containerConcurrency: 10
       containers:
       - name: callme
-        image: piomin/callme-service:1.0
+        image: piomin/callme-service:1.1
         ports:
           - containerPort: 8080
         env:
