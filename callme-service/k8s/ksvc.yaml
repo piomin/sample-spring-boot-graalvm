@@ -13,7 +13,7 @@ spec:
       containerConcurrency: 10
       containers:
       - name: callme
-        image: piomin/callme-service
+        image: piomin/callme-service:1.0
         ports:
           - containerPort: 8080
         env:

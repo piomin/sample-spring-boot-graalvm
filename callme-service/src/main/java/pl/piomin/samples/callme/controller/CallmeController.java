@@ -2,6 +2,7 @@ package pl.piomin.samples.callme.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.info.BuildProperties;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,11 +23,18 @@ public class CallmeController {
     private String podNamespace;
     @Autowired
     private CallmeRepository repository;
+    @Autowired(required = false)
+    BuildProperties buildProperties;
 
     @GetMapping("/ping")
     public String ping() {
-        Callme c = repository.save(new Callme(new Date(), podName));
-        return appName + "(id=" + c.getId() + "): " + podName + " in " + podNamespace;
+        Callme c = repository.save(new Callme(new Date(), podName,
+                buildProperties != null ? buildProperties.getVersion() : null));
+        return appName +
+                " v" + c.getVersion() +
+                " (id=" + c.getId() + "): " +
+                podName +
+                " in " + podNamespace;
     }
 
 }
