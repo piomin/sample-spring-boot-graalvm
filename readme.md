@@ -4,4 +4,5 @@ In this project I'm demonstrating you how to prepare applications for compilatio
 
 ## Getting Started
 This repo is used in several articles that leverages fast application startup.
-1. Microservices on Knative with Spring Boot and GraalVM - available soon! It shows how to run Spring Boot microservices on Knative (communication & tracing)
+1. [Microservices on Knative with Spring Boot and GraalVM](https://piotrminkowski.com/2021/03/05/microservices-on-knative-with-spring-boot-and-graalvm/) - intro to the native Spring Boot compilation with GraalVM and deploy to Knative
+2. [Canary Release on Kubernetes with Knative and Tekton](https://piotrminkowski.com/2022/03/29/canary-release-on-kubernetes-with-knative-and-tekton/) - intro to canary releases with Knative gradual rollout and Tekton pipelines
