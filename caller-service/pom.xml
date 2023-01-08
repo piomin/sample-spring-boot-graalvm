@@ -19,7 +19,7 @@
             pl.piomin.samples.caller.CallerApplication
         </start-class>
         <java.version>11</java.version>
-        <spring.native.version>0.9.0-SNAPSHOT</spring.native.version>
+        <spring.native.version>0.11.3</spring.native.version>
     </properties>
 
     <dependencies>
@@ -50,20 +50,30 @@
             <artifactId>spring-native</artifactId>
             <version>${spring.native.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.specto</groupId>
+            <artifactId>hoverfly-java-junit5</artifactId>
+            <version>0.14.3</version>
+        </dependency>
     </dependencies>
 
     <repositories>
         <repository>
-            <id>spring-snapshots</id>
-            <name>Spring Snapshots</name>
-            <url>https://repo.spring.io/snapshot</url>
+            <id>spring-release</id>
+            <name>Spring Release</name>
+            <url>https://repo.spring.io/release</url>
         </repository>
     </repositories>
     <pluginRepositories>
         <pluginRepository>
-            <id>spring-snapshots</id>
-            <name>Spring Snapshots</name>
-            <url>https://repo.spring.io/snapshot</url>
+            <id>spring-release</id>
+            <name>Spring Release</name>
+            <url>https://repo.spring.io/release</url>
         </pluginRepository>
     </pluginRepositories>
 
