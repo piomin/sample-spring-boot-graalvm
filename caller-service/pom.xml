@@ -12,13 +12,13 @@
 
     <groupId>pl.piomin.samples</groupId>
     <artifactId>caller-service</artifactId>
-    <version>1.0</version>
+    <version>1.1</version>
 
     <properties>
         <start-class>
             pl.piomin.samples.caller.CallerApplication
         </start-class>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
         <spring.native.version>0.11.3</spring.native.version>
     </properties>
 
