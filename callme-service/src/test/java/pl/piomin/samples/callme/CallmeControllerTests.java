@@ -2,6 +2,7 @@ package pl.piomin.samples.callme;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.info.BuildProperties;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
@@ -15,11 +16,14 @@ public class CallmeControllerTests {
     int port;
     @Autowired
     TestRestTemplate restTemplate;
+    @Autowired(required = false)
+    BuildProperties buildProperties;
 
     @Test
     void ping() {
+        String version = buildProperties != null ? buildProperties.getVersion() : "null";
         String response = restTemplate.getForObject("/callme/ping", String.class);
         assertNotNull(response);
-        assertEquals("callme-service v1.0-SNAPSHOT (id=1): abc in default", response);
+        assertEquals("callme-service v" + version + " (id=1): abc in default", response);
     }
 }
