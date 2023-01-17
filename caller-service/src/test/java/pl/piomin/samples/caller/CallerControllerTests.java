@@ -26,15 +26,16 @@ public class CallerControllerTests {
 
     @Test
     void ping(Hoverfly hoverfly) {
+        String msg = "callme-service v1.0-SNAPSHOT (id=1): abc in default";
         hoverfly.simulate(dsl(
                 service("http://callme-service.serverless.svc.cluster.local")
                         .get("/callme/ping")
-                        .willReturn(success("callme-service v1.0-SNAPSHOT (id=1): abc in default", "text/plain"))));
+                        .willReturn(success(msg, "text/plain"))));
 
         String response = restTemplate.getForObject("/caller/ping", String.class);
         assertNotNull(response);
 
-        String c = "caller-service(id=1): abc in default is calling callme-service v1.0-SNAPSHOT (id=1): abc in default";
+        String c = "caller-service(id=1): abc in default is calling " + msg;
         assertEquals(c, response);
     }
 }
