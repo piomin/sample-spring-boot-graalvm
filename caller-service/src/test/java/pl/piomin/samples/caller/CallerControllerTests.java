@@ -7,7 +7,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.boot.web.server.LocalServerPort;
 
 import static io.specto.hoverfly.junit.core.SimulationSource.dsl;
 import static io.specto.hoverfly.junit.dsl.HoverflyDsl.service;
@@ -19,8 +18,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @ExtendWith(HoverflyExtension.class)
 public class CallerControllerTests {
 
-    @LocalServerPort
-    int port;
     @Autowired
     TestRestTemplate restTemplate;
 

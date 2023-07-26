@@ -1,7 +1,6 @@
 package pl.piomin.samples.callme.model;
 
-
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
