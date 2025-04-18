@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: callme-service
+  labels:
+    app.openshift.io/runtime: spring-boot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: callme-service
+  template:
+    metadata:
+      labels:
+        app: callme-service
+        app.openshift.io/runtime: spring-boot
+    spec:
+      containers:
+      - name: callme
+        image: piomin/callme-service:1.1
+        ports:
+        - containerPort: 8080
+        env:
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: callme-service
+  labels:
+    app.openshift.io/runtime: spring-boot
+spec:
+  selector:
+    app: callme-service
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
