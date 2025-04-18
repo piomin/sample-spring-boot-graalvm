@@ -9,6 +9,19 @@ jobs:
       - run:
           name: Analyze on SonarCloud
           command: mvn verify sonar:sonar
+  nativeImage:
+    executor: machine_executor_amd64
+    steps:
+      - checkout
+      - run:
+          name: Build Root
+          command: |
+            mvn clean package -DskipTests
+      - run:
+          name: Build Native Image
+          command: |
+            cd callme-service
+            mvn -Pnative spring-boot:build-image
   deploy-k8s:
     executor: machine_executor_amd64
     steps:
@@ -35,10 +48,10 @@ jobs:
           name: Create Kind Cluster
           command: |
             kind create cluster --name c1
-      - run:
-          name: Deploy to K8s
-          command: |
-            skaffold run -p jib,k8s-deploy
+#      - run:
+#          name: Deploy to K8s
+#          command: |
+#            skaffold run -p jib,k8s-deploy
       - run:
           name: Delete Kind Cluster
           command: |
@@ -66,3 +79,4 @@ workflows:
       - build:
           context: SonarCloud
       - deploy-k8s
+      - nativeImage
