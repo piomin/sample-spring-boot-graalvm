@@ -1,0 +1,39 @@
+apiVersion: skaffold/v4beta5
+kind: Config
+metadata:
+  name: sample-spring-boot-graalvm
+build:
+  artifacts:
+    - image: piomin/caller-service
+      context: caller-service
+      buildpacks:
+        builder: paketobuildpacks/builder:tiny
+        env:
+          - BP_BOOT_NATIVE_IMAGE=true
+    - image: piomin/callme-service
+      context: callme-service
+      buildpacks:
+        builder: paketobuildpacks/builder:tiny
+        env:
+          - BP_BOOT_NATIVE_IMAGE=true
+deploy:
+  kubectl: {}
+manifests:
+  rawYaml:
+    - caller-service/k8s/ksvc.yaml
+    - callme-service/k8s/ksvc.yaml
+profiles:
+  - name: jib
+    build:
+      artifacts:
+        - image: piomin/caller-service
+          context: caller-service
+          jib: {}
+        - image: piomin/callme-service
+          context: callme-service
+          jib: {}
+  - name: k8s-deploy
+    manifests:
+      rawYaml:
+        - caller-service/k8s/deployment.yaml
+        - callme-service/k8s/deployment.yaml
