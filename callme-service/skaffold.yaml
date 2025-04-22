@@ -8,7 +8,7 @@ build:
     buildpacks:
       builder: paketobuildpacks/builder:tiny
       env:
-      - BP_BOOT_NATIVE_IMAGE=true
+        - BP_BOOT_NATIVE_IMAGE=true
 deploy:
   kubectl: {}
 manifests:

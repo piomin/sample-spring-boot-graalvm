@@ -22,6 +22,8 @@ jobs:
           command: |
             cd callme-service
             mvn clean spring-boot:build-image -Pnative
+            cd ../caller-service
+            mvn clean spring-boot:build-image -Pnative
   deploy-k8s:
     executor: machine_executor_amd64
     steps:
@@ -78,5 +80,8 @@ workflows:
           executor: jdk
       - build:
           context: SonarCloud
-      - deploy-k8s
       - nativeImage
+      - deploy-k8s:
+          requires:
+            - maven/test
+            - build
