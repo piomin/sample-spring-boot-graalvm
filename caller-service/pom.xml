@@ -13,9 +13,6 @@
     <version>1.2</version>
 
     <properties>
-        <start-class>
-            pl.piomin.samples.caller.CallerApplication
-        </start-class>
         <java.version>21</java.version>
     </properties>
 
@@ -61,15 +58,6 @@
                         </goals>
                     </execution>
                 </executions>
-                <configuration>
-                    <image>
-                        <builder>paketobuildpacks/builder:tiny</builder>
-                        <env>
-                            <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>
-                            <BP_NATIVE_IMAGE_BUILD_ARGUMENTS>--allow-incomplete-classpath</BP_NATIVE_IMAGE_BUILD_ARGUMENTS>
-                        </env>
-                    </image>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.graalvm.buildtools</groupId>
@@ -88,7 +76,7 @@
                 </dependencies>
                 <configuration>
                     <from>
-                        <image>ubuntu:20.10</image>
+                        <image>ubuntu:25.04</image>
                     </from>
                     <pluginExtensions>
                         <pluginExtension>
@@ -117,48 +105,5 @@
             </plugin>
         </plugins>
     </build>
-
-<!--    <profiles>-->
-<!--        <profile>-->
-<!--            <id>native-image</id>-->
-<!--            <build>-->
-<!--                <plugins>-->
-<!--                    <plugin>-->
-<!--                        <groupId>org.graalvm.nativeimage</groupId>-->
-<!--                        <artifactId>native-image-maven-plugin</artifactId>-->
-<!--                        <version>21.2.0</version>-->
-<!--                        <executions>-->
-<!--                            <execution>-->
-<!--                                <goals>-->
-<!--                                    <goal>native-image</goal>-->
-<!--                                </goals>-->
-<!--                                <phase>package</phase>-->
-<!--                            </execution>-->
-<!--                        </executions>-->
-<!--                    </plugin>-->
-<!--                    <plugin>-->
-<!--                        <groupId>org.springframework.boot</groupId>-->
-<!--                        <artifactId>spring-boot-maven-plugin</artifactId>-->
-<!--                        <executions>-->
-<!--                            <execution>-->
-<!--                                <goals>-->
-<!--                                    <goal>build-info</goal>-->
-<!--                                </goals>-->
-<!--                            </execution>-->
-<!--                        </executions>-->
-<!--                        <configuration>-->
-<!--                            <image>-->
-<!--                                <builder>paketobuildpacks/builder:tiny</builder>-->
-<!--                                <env>-->
-<!--                                    <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>-->
-<!--                                    <BP_NATIVE_IMAGE_BUILD_ARGUMENTS>&#45;&#45;allow-incomplete-classpath</BP_NATIVE_IMAGE_BUILD_ARGUMENTS>-->
-<!--                                </env>-->
-<!--                            </image>-->
-<!--                        </configuration>-->
-<!--                    </plugin>-->
-<!--                </plugins>-->
-<!--            </build>-->
-<!--        </profile>-->
-<!--    </profiles>-->
 
 </project>
