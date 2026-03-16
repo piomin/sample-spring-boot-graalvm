@@ -12,10 +12,6 @@
     <artifactId>caller-service</artifactId>
     <version>1.2</version>
 
-    <properties>
-        <java.version>21</java.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -67,6 +63,15 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <image>
+                        <builder>paketobuildpacks/builder-jammy-buildpackless-tiny</builder><!--required for AArch64/M1 support -->
+                        <buildpacks>
+                            <buildpack>paketobuildpacks/oracle</buildpack>
+                            <buildpack>paketobuildpacks/java-native-image</buildpack>
+                        </buildpacks>
+                    </image>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.graalvm.buildtools</groupId>
