@@ -48,7 +48,7 @@ public class CallerController {
 
 	private String callme(HttpHeaders headers) {
 		MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
-		Set<String> headerNames = headers.keySet();
+		Set<String> headerNames = headers.headerNames();
 		headerNames.forEach(it -> map.put(it, headers.get(it)));
 		HttpEntity httpEntity = new HttpEntity(map);
 		ResponseEntity<String> entity = restTemplate
